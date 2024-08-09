@@ -25,20 +25,26 @@ fn main() -> color_eyre::Result<()> {
     color_eyre::config::HookBuilder::default()
         .display_env_section(true)
         .install()?;
-    some_higher_level_build(123, 123123, "./fakey_fakey_path".into())?;
-    Ok(())
+    some_higher_level_build(123, 123123, "./fakey_fakey_path".into())
 }
 
 #[instrument]
 fn some_higher_level_build(left: u64, right: u64, middle: String) -> color_eyre::Result<()> {
-    let report: color_eyre::Result<()> = build_extended(left, right, middle).map_err(Into::into);
-    report
-        .suggestion("try to use good good file")
-        .warning("what ever happens next is good")
-        .suggestion("better")
+    match build_extended(left, right, middle) {
+        Ok(..) => {
 
-.note("Cargo.lock check was performed against git version of code.")
-.note("Don't forget to check in Cargo.lock into source code for deploy if it's git-ignored...    ")?;
-    println!("hello");
+        
+        },
+        Err(err) => {
+            let err = color_eyre::eyre::Report::from(err)
+                .suggestion("try to use good good file")
+                .warning("what ever happens next is good")
+                .suggestion("better")
+                .note("Cargo.lock check was performed against git version of code.")
+                .note("Don't forget to check in Cargo.lock into source code for deploy if it's git-ignored...    ");
+            return Err(err);
+        },
+        
+    };
     Ok(())
 }
