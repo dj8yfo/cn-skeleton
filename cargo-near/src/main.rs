@@ -1,10 +1,10 @@
-use cargo_near_lib::build;
+use cargo_near_lib::build_extended;
 
 fn main() -> color_eyre::Result<()> {
 
     color_eyre::install()?;
 
-    build(123, 123123)?;
+    build_extended(123, 123123, "middle of nowhre".into())?;
     println!("hello");
     Ok(())
 
