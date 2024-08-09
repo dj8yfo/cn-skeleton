@@ -2,6 +2,7 @@ use cargo_near_lib::build_extended;
 use color_eyre::Section;
 use tracing::instrument;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
+use colored::Colorize;
 
 fn install_tracing() {
     use tracing_error::ErrorLayer;
@@ -37,11 +38,11 @@ fn some_higher_level_build(left: u64, right: u64, middle: String) -> color_eyre:
         },
         Err(err) => {
             let err = color_eyre::eyre::Report::from(err)
-                .suggestion("try to use good good file")
-                .warning("what ever happens next is good")
-                .suggestion("better")
-                .note("Cargo.lock check was performed against git version of code.")
-                .note("Don't forget to check in Cargo.lock into source code for deploy if it's git-ignored...    ");
+                .suggestion("try to use good good file".cyan())
+                .warning("what ever happens next is good".yellow())
+                .suggestion("better".cyan())
+                .note("Cargo.lock check was performed against git version of code.".cyan())
+                .note("Don't forget to check in Cargo.lock into source code for deploy if it's git-ignored...    ".cyan());
             return Err(err);
         },
         
