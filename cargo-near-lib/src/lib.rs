@@ -35,8 +35,8 @@ pub fn build(left: u64, right: u64) -> Result<(), TestError> {
     
 }
 
-pub fn build_extended(left: u64, right: u64, middle: String) -> Result<(), TestError> {
-    println!("left: {}, middle: {}, right: {}", left, middle, right);
+pub fn build_extended(_left: u64, _right: u64, middle: String) -> Result<(), TestError> {
+    // println!("left: {}, middle: {}, right: {}", left, middle, right);
     read_file(&middle)?;
     Ok(())
 }
