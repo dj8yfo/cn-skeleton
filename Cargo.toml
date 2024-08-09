@@ -1,0 +1,12 @@
+[workspace]
+resolver = "2"
+members = [
+    "cargo-near",
+    "cargo-near-lib"
+]
+
+
+[workspace.package]
+# shared version of all public crates in the workspace
+version = "0.8.0"
+
