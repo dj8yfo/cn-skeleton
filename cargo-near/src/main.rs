@@ -4,7 +4,7 @@ fn main() -> color_eyre::Result<()> {
 
     color_eyre::install()?;
 
-    build_extended(123, 123123, "middle of nowhre".into())?;
+    build_extended(123, 123123, "./fakey_fakey_path".into())?;
     println!("hello");
     Ok(())
 
